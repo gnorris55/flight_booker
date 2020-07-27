@@ -1,0 +1,11 @@
+<h2><%= @airport.code%> Airport</h2>
+
+<h4>Departures</h4>
+<% @airport.flight_departures.each do |dep| %>
+    <p>departure time: <%= dep.start_date %>, to: <%= Airport.find_by(id: dep.to_airport_id).code%></p>
+<% end %>
+
+<h4>Arrivals</h4>
+<% @airport.flight_arrivals.each do |arr| %>
+    <p>arrival time: <%= arr.start_date %>, from: <%= Airport.find_by(id: arr.from_airport_id).code%></p>
+<% end %>
