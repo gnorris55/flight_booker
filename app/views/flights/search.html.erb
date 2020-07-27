@@ -1,0 +1,12 @@
+<h2>flight options</h2>
+
+<% if @flights.present? %>
+    <% @flights.each do |f|%>
+        <p>
+            <%= f.start_date %>, 
+            <%= f.from_airport.code %>-<%= f.to_airport.code %><br>
+        </p>
+    <% end %>
+<% else %>
+    <div class="no-flights"><%= flash[:no_data]%></div>
+<% end %>
