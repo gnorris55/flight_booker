@@ -1,17 +1,17 @@
 <h2>Flights</h2>
 
-
+<h4>search for flights</h4>
+<form action="/search">
+    <p>from: <%= select_tag(:from_airport, options_for_select(@flight_options)) %>, to: <%= select_tag(:to_airport, options_for_select(@flight_options)) %> amount of passengers: <%= select_tag(:amount_pass, options_for_select([1, 2, 3, 4])) %></p>
+    <button type="submit">Search</button>
+</form>
 
 <% @flights.each do |f|%>
     <div class="flights-info">
         <h4>from: <%= link_to f.from_airport.code, airport_path(f.from_airport_id)%>,
-            to: <%= link_to f.to_airport.code, airport_path(f.to_airport_id)%>, leave date: <%= f.start_date%></h4>
+            to: <%= link_to f.to_airport.code, airport_path(f.to_airport_id)%>, 
+            leave date: <%= f.start_date%>,
+            empty seats: <%= 50 - f.num_of_passengers%>
+        </h4>
     </div>
 <% end %>
-
-<h4>search for flights</h4>
-<form action="/search">
-    <p>from: <%= select_tag(:from_airport, options_for_select(@flight_options)) %>, to: <%= select_tag(:to_airport, options_for_select(@flight_options)) %></p>
-    <p>flight date: <%= select_tag(:start_date, options_for_select(@flight_date)) %></p>
-    <button type="submit">Search</button>
-</form>

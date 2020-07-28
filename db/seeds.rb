@@ -2,12 +2,32 @@ Airport.destroy_all
 Flight.destroy_all
 
 @airport_one = Airport.create(code: 'NYC')
-@airport_two = Airport.create(code: 'LAX')
-@airport_three = Airport.create(code: 'HKG')
+Airport.create(code: 'LAX')
+Airport.create(code: 'HKG')
+Airport.create(code: 'MEL')
+Airport.create(code: 'YYJ')
+Airport.create(code: 'YVR')
+Airport.create(code: 'MOT')
 
-Flight.create(start_date: DateTime.now + 5.days, from_airport_id: @airport_one.id, to_airport_id: @airport_two.id)
-Flight.create(start_date: DateTime.now + 10.days, from_airport_id: @airport_three.id, to_airport_id: @airport_one.id)
-Flight.create(start_date: DateTime.now + 13.days, from_airport_id: @airport_two.id, to_airport_id: @airport_three.id)
+for i in 0...75
+    to_flight = 0
+    from_flight = 0
+    airport_count = Airport.count - 1
 
-p "created: #{Flight.count} Airports"
+    while 
+        to_flight = rand( 1 + airport_count)
+        from_flight = rand(1 + airport_count)
+        
+        if to_flight != from_flight
+            break
+        end
+
+    end 
+    Flight.create(start_date: DateTime.now + rand(350).days, 
+                  from_airport_id: @airport_one.id + from_flight,
+                  to_airport_id: @airport_one.id + to_flight,
+                  num_of_passengers: 1 + rand(50))
+end
+
+p "created: #{Airport.count} Airports"
 p "created: #{Flight.count} flights"

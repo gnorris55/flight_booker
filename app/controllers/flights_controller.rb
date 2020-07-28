@@ -6,8 +6,8 @@ class FlightsController < ApplicationController
     end 
 
     def search
-        @flights = Flight.where("from_airport_id LIKE ? AND to_airport_id LIKE ? OR start_date LIKE ?", 
-                                params[:from_airport], params[:to_airport], params[:start_date]) 
+        @flights = Flight.where("from_airport_id LIKE ? AND to_airport_id LIKE ? AND num_of_passengers + ? <= 50", 
+                                params[:from_airport], params[:to_airport], params[:amount_pass]) 
                                 
         flash[:no_data] = "no flights found"
     end 

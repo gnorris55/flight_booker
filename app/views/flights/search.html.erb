@@ -5,6 +5,7 @@
         <p>
             <%= f.start_date %>, 
             <%= f.from_airport.code %>-<%= f.to_airport.code %><br>
+            <%= 50 - f.num_of_passengers %> empty seats 
         </p>
     <% end %>
 <% else %>
