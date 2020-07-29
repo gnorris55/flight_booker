@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :airports
 
   get '/search' => 'flights#search'
+  get '/new_booking' => 'flight_bookings#new'
   
   root "flights#index"
 end

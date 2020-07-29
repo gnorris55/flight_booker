@@ -2,11 +2,17 @@
 
 <% if @flights.present? %>
     <%= render 'count' %>
+    <form action="/new_booking">
     
-    <% @flights.each do |f|%>
-            <p><%= f.start_date.year %> | <%= f.start_date.strftime("%B") %> | <%= f.start_date.day %> |</p>
-            <p><%= 50 - f.num_of_passengers %> empty seats </p>
-    <% end %>
+    <button type="submit">Book</button>
+
+        <% @flights.each do |f|%>
+                <p><%= radio_button_tag(:flight, f.id) %><%= f.start_date.year %> | <%= f.start_date.strftime("%B") %> | <%= f.start_date.day %> |</p>
+                <p><%= 50 - f.num_of_passengers %> empty seats </p>
+        <% end %>
+    <%= hidden_field_tag(:destined_airport, Airport.find_by(id: @flights.first.to_airport_id).code)%>
+    <%= hidden_field_tag(:num_passengers, @amount_of_passengers)%>
+    </form>
 
 <% else %>
     <div class="no-flights"><%= flash[:no_data]%></div>
