@@ -1,0 +1,8 @@
+<h4 class="flight-count">
+        <% if @flights.count == 1 %>
+            there is <%= @flights.count %> flight available
+        <% else %>
+            there are <%= @flights.count %> flights available from
+        <% end %>
+        <%= @flights.first.from_airport.code %> to <%= @flights.first.to_airport.code %>
+    </h4>

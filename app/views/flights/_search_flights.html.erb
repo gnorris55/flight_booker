@@ -1,0 +1,8 @@
+<form action="/search">
+    <p>
+        from: <%= select_tag(:from_airport, options_for_select(@flight_options)) %>,
+        to: <%= select_tag(:to_airport, options_for_select(@flight_options)) %>, 
+        amount of passengers: <%= select_tag(:amount_pass, options_for_select([1, 2, 3, 4])) %>
+    </p>
+    <button type="submit">Search</button>
+</form>

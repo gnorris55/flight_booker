@@ -1,13 +1,13 @@
 <h2>flight options</h2>
 
 <% if @flights.present? %>
+    <%= render 'count' %>
+    
     <% @flights.each do |f|%>
-        <p>
-            <%= f.start_date %>, 
-            <%= f.from_airport.code %>-<%= f.to_airport.code %><br>
-            <%= 50 - f.num_of_passengers %> empty seats 
-        </p>
+            <p><%= f.start_date.year %> | <%= f.start_date.strftime("%B") %> | <%= f.start_date.day %> |</p>
+            <p><%= 50 - f.num_of_passengers %> empty seats </p>
     <% end %>
+
 <% else %>
     <div class="no-flights"><%= flash[:no_data]%></div>
 <% end %>

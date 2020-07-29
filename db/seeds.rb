@@ -9,7 +9,7 @@ Airport.create(code: 'YYJ')
 Airport.create(code: 'YVR')
 Airport.create(code: 'MOT')
 
-for i in 0...75
+for i in 0...250
     to_flight = 0
     from_flight = 0
     airport_count = Airport.count - 1
@@ -27,6 +27,7 @@ for i in 0...75
                   from_airport_id: @airport_one.id + from_flight,
                   to_airport_id: @airport_one.id + to_flight,
                   num_of_passengers: 1 + rand(50))
+                  
 end
 
 p "created: #{Airport.count} Airports"
