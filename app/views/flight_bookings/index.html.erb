@@ -1,0 +1,18 @@
+<h3>all bookings</h3>
+
+<% @flight_bookings.each do |fb|%>
+    <p>
+        flight_id: <%= fb.flight_id %>,
+        <% if fb.passengers.present? %>
+            <% if fb.passengers.count > 1 %>
+                there are <%= fb.passengers.count%> passengers in this booking
+            <% else %>
+            there is <%= fb.passengers.count%> passenger in this booking
+            <% end %>
+
+        <% else %>
+            there are no passengers on this booking
+
+        <% end %>
+    </p>
+<% end %>

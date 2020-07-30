@@ -1,5 +1,7 @@
 Airport.destroy_all
 Flight.destroy_all
+FlightBooking.destroy_all
+Passenger.destroy_all
 
 @airport_one = Airport.create(code: 'NYC')
 Airport.create(code: 'LAX')
@@ -29,6 +31,12 @@ for i in 0...250
                   num_of_passengers: 1 + rand(50))
                   
 end
+
+@flight_booking = FlightBooking.new(flight_id: Flight.first.id, passenger_number: 4)
+@flight_booking.passengers.build(name: "grom", email: "grom@gromdidlygromgrom.ca")
+@flight_booking.save
+
+
 
 p "created: #{Airport.count} Airports"
 p "created: #{Flight.count} flights"

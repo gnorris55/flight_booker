@@ -1,3 +1,18 @@
 <h3>flight bookings</h3>
 
-<p> you booked flight #<%= @flight_booking.flight_id %> to <%= @destined_airport %> for <%= @flight_booking.passenger_number %> people </p>
+<p> you booked flight #<%= @flight_id %> to <%= @destined_airport %> for <%= @number_of_passengers %> people </p>
+
+<%= form_for(@flight_booking) do |booking_form|%>
+    <%= fields_for :passengers do |passenger_form|%>
+        <%= passenger_form.label "Name: "%>
+        <%= passenger_form.text_field :name%>
+        <%= passenger_form.label "Email: "%>
+        <%= passenger_form.text_field :email%>
+        <%= passenger_form.hidden_field :flight_id, :value => @flight_id%>
+
+    <% end %>
+    <%= booking_form.hidden_field :flight_id, :value => @flight_id %>
+    <%= booking_form.hidden_field :passenger_number, :value => @number_of_passengers %>
+    <%= booking_form.submit "Book Flight" %>
+
+<% end %>
